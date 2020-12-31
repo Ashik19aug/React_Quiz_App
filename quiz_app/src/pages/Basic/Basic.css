@@ -1,0 +1,33 @@
+.question {
+  background-color: #009688 !important;
+  transform: translate(-0%, -50%);
+  position: absolute;
+  top: 0;
+  padding: 16px;
+  height: auto;
+  width: calc(100% - 80px);
+  color: white !important;
+  text-align: left;
+}
+
+.answer {
+  background-color: #e3f2fd !important;
+  margin: 20px;
+  padding: 20px;
+  position: relative;
+  min-height: 100px;
+  padding: 30px;
+  text-align: left;
+  color: black !important;
+}
+
+.quizoption {
+  margin-top : 20px;
+}
+
+.expandselect {
+  background-color: #009688 !important;
+  margin-top: 15px !important;
+  min-height: 15px;
+  color:white !important;
+}

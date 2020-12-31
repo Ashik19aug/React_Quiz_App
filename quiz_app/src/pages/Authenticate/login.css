@@ -1,0 +1,148 @@
+.root {
+    width: 100%;
+    text-align: left;
+    height: 100%;
+    position: relative;
+    background-image: url("https://nikcheerla.github.io/deeplearningschool//media/numb3rs.jpg");
+    background-size: cover;
+    min-height: 'calc(100vh - 64px)';
+    background-position: center;
+    color: #ffffff;
+  }
+
+  @media (max-width:767px){
+    .root {
+        position: 'relative';
+        height: '566';
+    }
+  }
+
+  .toolbar {
+    min-height: 64;
+  }
+
+  .backDrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* backdrop-filter: blur(0.8px); */
+    /* backdrop-filter:rgba(0,0,0,0.7); */
+  }
+
+  .container {
+    height: 100%;
+    z-index: 2;
+    position: relative;
+  }
+
+  .brand {
+    color: #ffffff;
+    font-weight: 900;
+  }
+
+  .left {
+      flex-grow: 1;
+  }
+
+  .right {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .mlNormal {
+      margin-left: 16;
+  }
+
+  .content {
+    padding: 16;
+    min-height: calc(100vh - 64px);
+  }
+
+  .input {
+    background: rgba(255,255,255,0.16);
+  }
+  .input:hover{
+    background: rgba(255,255,255,0.24);
+  }
+  .input:focused{
+    background: rgba(255,255,255,0.24);
+  }
+
+  .input:Input {
+    color: #ffffff;
+  }
+
+  .underline::after {
+      border-color: ForestGreen;
+  }
+
+  .focused {
+
+  }
+
+  .inputLabel {
+    color: #ffffff;
+    opacity: 0.8;
+  }
+
+  .inputLabel:focused{
+      opacity: 1;
+      color: #ffffff;
+  }
+
+  .appBar {
+    background: none;
+  }
+
+  .checkbox {
+    color: rgba(255,255,255,0.87);
+  }
+
+  .checkboxLabel {
+    color: rgba(255,255,255,0.87);
+  }
+
+  .grey {
+    color: #c5c5c5;
+  }
+
+  .buttonLabel {
+      text-transform: none;
+  }
+
+  .bottomSignUp {
+    text-align: center;
+    margin-top: 24;
+    margin-bottom: 16;
+  }
+
+  .forgetPassword {
+      text-align: center;
+      color: #ffffff;
+  }
+
+  @media (max-width:767px){
+    .forgetPassword {
+        position: absolute;
+        bottom: 32;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width:400px){
+    .forgetPassword {
+        margin-top: 40;
+    }
+  }
+
+  .formcont{
+      /* opacity: 0.7; */
+      border-radius: 10px;
+      backdrop-filter: blur(7px);
+      padding: 10px;
+  }
