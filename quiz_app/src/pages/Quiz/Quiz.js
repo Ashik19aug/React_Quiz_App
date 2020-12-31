@@ -20,6 +20,7 @@ import axios from "axios";
 import Search from "../../components/Search";
 import TakeQuiz from "../../components/TakeQuiz";
 import Result from "../../components/Card/Result";
+import Quizonload from "../../components/Dialog/ContentOnloadAlart"
 import "./Quiz.css";
 
 
@@ -44,11 +45,12 @@ class quiz extends Component {
       answer: "",
       count: 0,
       scoreCount: 0,
+      alartQuizMassage:"Select Language & Quiz type on top..."
     };
     this.onLanguageUpdate = this.onLanguageUpdate.bind(this);
     axios.get("http://localhost/react_with_lumen_api/lumen_api/public/api/quiz").then((res )=> {
       this.setState({quizzes:res.data});
-      console.log(res.data);
+      // console.log(res.data);
     });
 
     this.getAns = this.getAns.bind(this);
@@ -65,13 +67,13 @@ class quiz extends Component {
     this.setState({
       languageSelect:val
     });
-    console.log(this.state.languageSelect);
+    // console.log(this.state.languageSelect);
   };
   onQuizType = (val) => {
     this.setState({
       quizTypeSelect:val
     });
-    console.log(this.state.quizTypeSelect);
+    // console.log(this.state.quizTypeSelect);
   }
 
   getAns(id, e) {
@@ -79,17 +81,16 @@ class quiz extends Component {
     let actualAns = id;
     if (actualAns == userInputAns) {
       this.state.scoreCount = this.state.scoreCount+1;
-      console.log("Success....");
+      // console.log("Success....");
     } else {
       this.state.scoreCount = this.state.scoreCount+0;
-      console.log("Wrong Answer..!!");
+      // console.log("Wrong Answer..!!");
     }
   }
 
   nextquiz() {
     this.setState({
       count: this.state.count + 1,
-      
     });
     console.log('test');
   }
@@ -102,8 +103,6 @@ class quiz extends Component {
   render() {
     const { classes, theme } = this.props;
     const { expanded } = this.state;
-
-    console.log(this.state.quizzes.length);
 
     let mainQuizData = this.state.quizzes.filter(
       (arr) => ((typeof arr.quiz_language !== "undefined" && arr.quiz_language == this.state.languageSelect.toUpperCase())&&(typeof arr.quiz_type !== "undefined" && arr.quiz_type == this.state.quizTypeSelect.toUpperCase()))
@@ -184,6 +183,7 @@ class quiz extends Component {
           <ExpansionPanel
             expanded={expanded === "panel1"}
             onChange={this.handleChange("panel1")}
+            style={{marginBottom:25}}
           >
             <ExpansionPanelSummary className= {'expandselect'} expandIcon={<ExpandMoreIcon />} >
               <Typography className={classes.heading}>
@@ -204,9 +204,11 @@ class quiz extends Component {
             </ExpansionPanelDetails>
           </ExpansionPanel>
 
+          <Quizonload msg={this.state.alartQuizMassage}/>
+
           <Grid item xs={12} style={{}} key={quiz.id}>
               
-            {initialview}
+            {/* {initialview} */}
             {QuizDataShow}
             {result}
 

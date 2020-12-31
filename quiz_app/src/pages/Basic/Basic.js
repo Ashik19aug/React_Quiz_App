@@ -10,6 +10,7 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import Quizonload from "../../components/Dialog/ContentOnloadAlart"
 
 import "./Basic.css";
 import Search from "../../components/Search";
@@ -38,6 +39,7 @@ export class PaginationExample extends PureComponent {
       languageSelect: "",
       filterData: [],
       expanded: null,
+      alartBasicMassage:"Select Language on top..."
     };
 
     this.onUpdate = this.onUpdate.bind(this);
@@ -81,9 +83,9 @@ export class PaginationExample extends PureComponent {
       <div>
         <Container>
           
-          <ExpansionPanel expanded={expanded === "panel1"} onChange={this.handleChange("panel1")} >
-            <ExpansionPanelSummary className= {'expandselect'} expandIcon={<ExpandMoreIcon style={{color:"white"}} />} >
-              <Typography className={classes.heading}>
+          <ExpansionPanel expanded={expanded === "panel1"} onChange={this.handleChange("panel1")} style={{borderRadius:20}}>
+            <ExpansionPanelSummary className= {'expandselect'} expandIcon={<ExpandMoreIcon style={{color:"white",borderRadius:20}} />} >
+              <Typography className={classes.heading} style={{borderRadius:20}}>
                 Please Select a Language you want you Learn
               </Typography>
             </ExpansionPanelSummary>
@@ -93,6 +95,8 @@ export class PaginationExample extends PureComponent {
               </Typography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
+
+          <Quizonload msg={this.state.alartBasicMassage} />
 
           {mainData.map((Basic) => (
             <Grid item xs={12} style={{}} key={Basic.id}>
@@ -109,10 +113,6 @@ export class PaginationExample extends PureComponent {
             </Grid>
           ))}
 
-
-          
-
-          
         </Container>
       </div>
     );

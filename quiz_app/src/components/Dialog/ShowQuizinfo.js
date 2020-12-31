@@ -58,7 +58,7 @@ export default function FormQuizShowDialog() {
   const deleteQuizData = (id) => {
     axios.delete(`http://localhost/react_with_lumen_api/lumen_api/public/api/quiz/${id}`).then((res) => {
       console.log(res);
-      console.log(res.data);
+      // console.log(res.data);
       window.location.reload(false);
     });
   };
@@ -110,16 +110,9 @@ export default function FormQuizShowDialog() {
       >
         Show Quiz Information
       </Button>
-      <Dialog
-        fullScreen
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle
-          id="form-dialog-title"
-          style={{
-            backgroundColor: "black",
+      <Dialog fullScreen open={open} onClose={handleClose} aria-labelledby="form-dialog-title" >
+        <DialogTitle id="form-dialog-title"
+          style={{ backgroundColor: "black",
             color: "white",
             textAlign: "center",
           }}

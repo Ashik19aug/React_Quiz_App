@@ -9,7 +9,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Quiz from "./pages/Quiz/Quiz";
 import AuthProvider from "./contexts/AuthContext"
-
 import {ViewProvider} from './contexts/ViewContext';
 import ProfileDialog from './components/ProfileDialog';
 

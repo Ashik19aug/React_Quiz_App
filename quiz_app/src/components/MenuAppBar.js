@@ -8,9 +8,9 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import Button from "@material-ui/core/Button";
+// import Logo from "../logo/card.jpg";
 
 import {useAuth} from '../contexts/AuthContext';
-import ProfileDialog from '../components/ProfileDialog';
 import {ViewContext} from '../contexts/ViewContext'
 
 import { withRouter, Link, useHistory } from "react-router-dom";
@@ -28,10 +28,16 @@ const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
   },
+  navbarbg: {
+    backgroundColor: '#000'
+  },
+  logo: {
+    maxWidth: 40,
+    marginRight: '10px'
+  }
 }));
 
 const MenuAppBar = (props) => {
-  // console.log(props);
   const { history } = props;
   const [profileOpen, setProfileOpen] = useContext(ViewContext);
 
@@ -55,55 +61,68 @@ const MenuAppBar = (props) => {
     setProfileOpen(true);
     console.log(profileOpen);
   }
-  const menuItems = [
-    {
-      menuTitle: "Home",
-      pageURL: "/",
-    },
-    {
-      menuTitle: "Basic",
-      pageURL: "/basic",
-    },
-    {
-      menuTitle: "Admin",
-      pageURL: "/admin",
-    },
-    {
-      menuTitle: "Login",
-      pageURL: "/login",
-    },
-  ];
 
   const { currentUser, logout } = useAuth()
   let [ceheckMail,setceheckMail] = useState('')
   
   const adminAccess = Array()
+  const loggeduser = Array()
   if(currentUser!=null){
     if(currentUser.email){
       if('ash@gmail.com'==currentUser.email){
-      adminAccess.push(
-      <Button
-        className={classes.button}
-        type="button"
-        variant="contained"
-        color="secondary"
-        onClick={() => handleButtonClick("/admin")}
-        >
-        Admin
-      </Button>
-      )
-  }
+        adminAccess.push(<Button type="button" className={classes.button} onClick={() => handleButtonClick("/quiz")}><b style={{color:"white"}}>Quiz</b></Button>)
+        adminAccess.push(<Button className={classes.button} type="button" onClick={() => handleButtonClick("/admin")}><b style={{color:"white"}}>Admin</b></Button>)
+        loggeduser.push(
+          <div>
+            <IconButton aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenu} color="inherit" >
+              <AccountCircle />
+            </IconButton>
+            <Menu id="menu-appbar" anchorEl={anchorEl} anchorOrigin={{ vertical: "top", horizontal: "right", }} keepMounted
+              transformOrigin={{ vertical: "top", horizontal: "right", }} open={open} onClose={handleClose} >
+              <MenuItem onClick={openProfile}>Profile</MenuItem>
+              <MenuItem onClick={handleLogout}>LogOut</MenuItem>
+            </Menu>
+          </div>
+        )
+      }
+      else{
+        adminAccess.push(
+        <Button type="button" className={classes.button} onClick={() => handleButtonClick("/quiz")} >
+          <b style={{color:"white"}}>Quiz</b>
+        </Button>)
+        loggeduser.push(
+          <div>
+            <IconButton aria-label="account of current user" aria-controls="menu-appbar" aria-haspopup="true" onClick={handleMenu} color="inherit" >
+              <AccountCircle />
+            </IconButton>
+            <Menu id="menu-appbar" anchorEl={anchorEl} anchorOrigin={{ vertical: "top", horizontal: "right", }} keepMounted
+              transformOrigin={{ vertical: "top", horizontal: "right", }} open={open} onClose={handleClose} >
+              <MenuItem onClick={openProfile}>Profile</MenuItem>
+              <MenuItem onClick={handleLogout}>LogOut</MenuItem>
+            </Menu>
+          </div>
+        )
+      }
     }
     else{
       console.log('mnb');
     }
   }
+
+  const webAccess = Array()
+  if(currentUser==null){
+    webAccess.push(
+      <Button className={classes.button} type="button" onClick={() => handleButtonClick("/login")} >
+        <b style={{color:"white"}}>Login</b>
+      </Button>
+    )
+  }
+
   if(currentUser==null){
       setceheckMail = false
   }
   
   const [error, setError] = useState("")
-
   async function handleLogout(){
     try{
       await logout()
@@ -116,88 +135,17 @@ const MenuAppBar = (props) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="fixed" className={classes.navbarbg}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            Welcome
-          </IconButton>
+          {/* <img src={logo} alt="Kitty Katty!" className={classes.logo} /> */}
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">Welcome</IconButton>
           <Typography variant="h6" className={classes.title}>
-            <Button
-              type="button"
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              onClick={() => handleButtonClick("/")}
-            >
-              Home
-            </Button>
-            <Button
-              type="button"
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              onClick={() => handleButtonClick("/basic")}
-            >
-              Basic
-            </Button>
-            <Button
-              type="button"
-              className={classes.button}
-              variant="contained"
-              color="primary"
-              onClick={() => handleButtonClick("/quiz")}
-            >
-              Quiz
-            </Button>
+            <Button type="button" className={classes.button} onClick={() => handleButtonClick("/")}> <b style={{color:"white"}}>Home</b> </Button>
+            <Button type="button" className={classes.button} onClick={() => handleButtonClick("/basic")} > <b style={{color:"white"}}>Basic</b> </Button>
             {adminAccess}
           </Typography>
-
-          <Typography>
-          <Button
-              className={classes.button}
-              type="button"
-              variant="contained"
-              color="primary"
-              onClick={() => handleButtonClick("/login")}
-            >
-              Login
-            </Button>
-          </Typography>
-
-          <div>
-            <IconButton
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <AccountCircle />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={open}
-              onClose={handleClose}
-            >
-              <MenuItem onClick={openProfile}>Profile</MenuItem>
-              <MenuItem onClick={handleLogout}>LogOut</MenuItem>
-            </Menu>
-          </div>
+          <Typography> {webAccess} </Typography>
+            {loggeduser}
         </Toolbar>
       </AppBar>
     </div>

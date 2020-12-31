@@ -11,7 +11,6 @@ import Grid from '@material-ui/core/Grid';
 import { useCoverCardMediaStyles } from '@mui-treasury/styles/cardMedia/cover';
 import { Row, Item } from '@mui-treasury/components/flex';
 
-import UserSkill from './ProfileSkills';
 import UserSkillShow from './UserSkillShow';
 
 const useGridStyles = makeStyles(({ breakpoints }) => ({

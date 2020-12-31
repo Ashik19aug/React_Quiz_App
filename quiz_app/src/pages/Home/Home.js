@@ -2,14 +2,14 @@ import React, { Component } from "react";
 // import "./Home.css";
 import Paper from "@material-ui/core/Paper";
 import { withStyles } from "@material-ui/core/styles";
-
 import Grid from '@material-ui/core/Grid';
 import Container from "@material-ui/core/Container";
-
 import Hdemo from "./homedemo";
-
-import { withRouter } from "react-router-dom";
 import { Button } from "@material-ui/core";
+
+
+
+import { DialogComponent } from '@syncfusion/ej2-react-popups';
 
 
 const styles = (theme) => ({
@@ -23,6 +23,8 @@ const styles = (theme) => ({
 });
 
 class home extends Component {
+
+
 
   render() {
     const { classes, theme } = this.props;
@@ -52,12 +54,14 @@ class home extends Component {
           <Hdemo />
           </Paper>
         </Grid>
-        
-
       </Grid>
 
+      {/* ========================================== */}
+
       
-      
+
+    {/* ========================================== */}
+
         </Container>
       </div>
     );
